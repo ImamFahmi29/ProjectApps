@@ -3,7 +3,7 @@
 
 {!! Form::open(['route' => 'user.store', 'class' => 'form-horizontal', 'role' => 'form','files'=>'true']) !!}
 
-<h2 align="center">Fill in First</h2><hr>
+<h2 align="center">Please Input User Detail</h2><hr>
 
 <div class="form-group">
 	{!! Form::label('full_name', 'Full Name', array('class' => 'col-lg-4 control-label')) !!}
@@ -48,9 +48,12 @@
 		<div class="clear"></div>
 </div>
 <div class="form-group">
-	<div class="col-lg-4"></div>
+	<div class="col-lg-4">
+		
+	</div>
 		<div class="col-lg-4">
-		{!! Form::submit('Submit', array('class' => 'btn btn-raised btn-primary')) !!}
+			{!! Form::submit('Submit', array('class' => 'btn btn-raised btn-primary')) !!}
+		{!! link_to(route('users.index'), "Back", ['class' => 'btn btn-primary']) !!}
 	</div>
 	<div class="clear"></div>
 </div>

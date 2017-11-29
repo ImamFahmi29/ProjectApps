@@ -15,8 +15,7 @@ class AddColumnUploadToUsers extends Migration
     {
         Schema::table('user_details', function (Blueprint $table) {
             $table->string('upload');
-              $table->string('status')->default($value)->after('no_hp');
-            });
+             
     }
 
     /**

@@ -11,16 +11,15 @@
 		</div>
 		<div class="collapse navbar-collapse">
 			<ul class="nav navbar-nav navbar-right">
-			<!-- 	<li>{!! link_to(route('home'), "Home") !!}</li>
-				<li>{!! link_to(route('profile'), "Profile") !!}</li> -->
-
-				@if (Sentinel::check())	
+				@if (Sentinel::check())
+					
 					<li>{!! link_to(route('logout'), 'Logout') !!}</li>
-					<li><a>Wellcome {!! Sentinel::getUser()->email !!}</a></li>
+					<li><a>Wellcome {!! Sentinel::getUser()->first_name !!}</a></li>
 				@else
 					<li>{!! link_to(route('register'), 'Register') !!}</li>
 					<li>{!! link_to(route('login'), 'Login') !!}</li>
 				@endif
+				
 			</ul>
 		</div>
 	</div>

@@ -18,11 +18,11 @@ class SessionsController extends Controller
             'password' => 'required'
     ];
 
-    public function __construct(){
+    // public function __construct(){
 
-    	// $this->middleware('sentinel');
-     //    $this->middleware('sentinel.role');
-    }
+    // 	// $this->middleware('sentinel');
+    //  //    $this->middleware('sentinel.role');
+    // }
 
     public function login()
 	{	
@@ -45,11 +45,11 @@ class SessionsController extends Controller
     		{
     			Session::flash("notice", "Welcome ".$user->email);
                 $login=Sentinel::getUser()->id ;
-                $cek= DB::table('user_details')->where('id', '=', $login)->first();
+                $cek= DB::table('user_details')->where('user_id', '=', $login)->first();
                 if($cek!= null){
-                    return redirect()->intended('/');
+                    return redirect()->intended('users');
                 }else{
-                    return view('layouts.show');    
+                    return redirect()->route('user.detail');    
                 }
     			
     		}else{
