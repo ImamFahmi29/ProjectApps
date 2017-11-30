@@ -18,12 +18,6 @@ class SessionsController extends Controller
             'password' => 'required'
     ];
 
-    // public function __construct(){
-
-    // 	// $this->middleware('sentinel');
-    //  //    $this->middleware('sentinel.role');
-    // }
-
     public function login()
 	{	
 		
@@ -47,9 +41,9 @@ class SessionsController extends Controller
                 $login=Sentinel::getUser()->id ;
                 $cek= DB::table('user_details')->where('user_id', '=', $login)->first();
                 if($cek!= null){
-                    return redirect()->intended('users');
+                    return redirect()->route('manages.index');
                 }else{
-                    return redirect()->route('user.detail');    
+                    return redirect()->route('manages.index');    
                 }
     			
     		}else{

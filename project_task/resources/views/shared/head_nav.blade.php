@@ -7,14 +7,14 @@
                 <span class="icon-bar"/>
                 <span class="icon-bar"/>
             </button>
-			<a href="#" class = "navbar-brand" type="">Task Project</a>
+			<a href="#" class = "navbar-brand" type="">Apps Project</a>
 		</div>
 		<div class="collapse navbar-collapse">
 			<ul class="nav navbar-nav navbar-right">
 				@if (Sentinel::check())
-					
+					<li><a>Wellcome {!! Sentinel::getUser()->email !!}</a></li>
 					<li>{!! link_to(route('logout'), 'Logout') !!}</li>
-					<li><a>Wellcome {!! Sentinel::getUser()->first_name !!}</a></li>
+					
 				@else
 					<li>{!! link_to(route('register'), 'Register') !!}</li>
 					<li>{!! link_to(route('login'), 'Login') !!}</li>

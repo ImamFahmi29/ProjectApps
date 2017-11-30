@@ -20,12 +20,12 @@ class AdminsController extends Controller
     
     public function index()
     {
-        $count = UserDetail::where('upload','=','Unread')->count();
-        $count2 = UserDetail::all()->count();
+        $doc = UserDetail::where('status','=','Unread')->count();
+        $users = UserDetail::all()->count();
 
        // dd($countall);
-        return view('admins.index')->with('count', $count)
-        ->with('count2', $count2);
+        return view('admins.index')->with('doc', $doc)
+        ->with('users', $users);
     }
 
     /**
@@ -40,7 +40,7 @@ class AdminsController extends Controller
 
     public function list()
     {
-        $details = UserDetail::where('upload','=','Unread')->paginate(6);
+        $details = UserDetail::where('status','=','Unread')->paginate(6);
         return view('admins.list')->with('details', $details);
     }
 
@@ -78,7 +78,8 @@ class AdminsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = UserDetail::find($id);
+        return view('admins.edit')->with('user', $user);
     }
 
     /**
@@ -90,7 +91,19 @@ class AdminsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // $hasil=UserDetail::find($id);
+        // $input['first_name'] = $request->first_name;
+        // $input['address'] = $request->address;
+        // $input['post'] = $request->post;
+        // $input['no_hp'] = $request->no_hp;
+
+        // $input['image'] = $hasil->image;
+        // if ($request->image !=null) {
+        //     $request->image->move(public_path('images'), $input['image']);
+        // }
+        // Article::find($id)->update($input);
+        // Session::flash("notice", "Article success updated");
+        // return redirect()->route("articles.show", $id);
     }
 
     /**
@@ -107,14 +120,14 @@ class AdminsController extends Controller
     public function change($id)
     {
             $details = UserDetail::where('user_id','=',$id)->get()->first();
-            $details->upload = "Accepted";
+            $details->status = "Terima";
             $details->save();
         return redirect()->route("manages.list");;
     }
     public function reject($id)
     {
             $details = UserDetail::where('user_id','=',$id)->get()->first();
-            $details->upload = "Rejected";
+            $details->status = "Tolak";
             $details->save();
         return redirect()->route("manages.list");;
     }

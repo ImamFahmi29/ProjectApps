@@ -10,12 +10,13 @@ use Sentinel;
 class StaticsController extends Controller
 {	
 
-	public function show($id){
+	public function show(){
 
-		
-	}
-    public function profile() {
-		return view('layouts/profile');
+        return view('users/detail');
+    }
+
+    public function detail() {
+		return view('users/detail');
 	}
 	public function home() {
 		return view('layouts/home');
@@ -24,5 +25,9 @@ class StaticsController extends Controller
 		$id=Sentinel::getUser()->id;
 		$details = UserDetail::where('user_id','=',$id)->get();
 		return view('users.index')->with('details',$details);
+	}
+	public function signup()
+	{
+		return view('users.register');
 	}
 }

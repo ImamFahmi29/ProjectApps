@@ -24,7 +24,7 @@ class RoleSentinelMiddleware
         if(Sentinel::getUser()->hasAccess('admin')) {
             return $next($request);
         } else {
-        Session::flash('error', 'You dont have privilege');
+        Session::flash('notice', 'Login As User');
         return redirect()->route('root');
         }
     }

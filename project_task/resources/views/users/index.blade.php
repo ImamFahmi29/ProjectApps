@@ -3,14 +3,14 @@
 
 <h2 align="center">Your CV</h2><hr>
 <table id="customers">
-  <tr>
-    <th>Name</th>
-    <th>Address</th>
-    <th>Post Code</th>
-    <th>No. Hp</th>
+  <tr align="center">
+    <th>Nama</th>
+    <th>Alamat</th>
+    <th>Kode Pos</th>
+    <th>No. Handphone</th>
     <th>CV</th>
     <th>Status</th>
-   <!--  <th>Action</th> -->
+    <th>Aksi</th>
   </tr>
 @foreach ($details as $detail)
 	<tr>
@@ -32,11 +32,11 @@
 		<td>
 			{!! $detail->status!!}
 		</td>
-		
+		<td>
+			<button type="submit" class="btn btn-primary">Edit</button>
+		</td>
 	</tr>
 
 </table>
 @endforeach
-<br><br>
-{!! link_to(route('user.detail'), "Create User Detail", ['class' => 'btn btn-primary']) !!}
 @stop

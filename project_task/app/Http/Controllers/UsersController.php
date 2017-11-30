@@ -15,7 +15,7 @@ use Carbon\carbon;
 class UsersController extends Controller
 {
 
-	public function __construct(){
+	// public function __construct(){
 
     	$this->middleware('sentinel');
         $this->middleware('sentinel.role');
@@ -56,31 +56,31 @@ class UsersController extends Controller
         $request->upload->move(public_path('cv'), $input['upload']);   
         UserDetail::create($input);
         Session::flash("notice","success created");
-        return redirect('users');
+        return redirect('users.index');
 		UserDetail::create($request->all());
         Session::flash("notice", "Profile success created");
         return redirect()->route("home");
 	}
 
-	public function edit_user($id)
-    {
-        $details = UserDetail::find($id);
-        return view('users.edit')->with('details', $details);
-    }
+	// public function edit_user($id)
+ //    {
+ //        $details = UserDetail::find($id);
+ //        return view('users.edit')->with('details', $details);
+ //    }
 
-     public function update_user(Request $request, $id)
-    {
-        $hasil=UserDetail::find($id);
-        $input['first_name'] = $request->first_name;
-        $input['address'] = $request->address;
-        $input['post'] = $request->post;
-        $input['no_hp'] = $request->no_hp;
-        $input['upload'] = $hasil->upload;
-        if ($request->upload !=null) {
-            $request->upload->move(public_path('cv'), $input['upload']);
-        }
-        UserDetail::find($id)->update($input);
-        Session::flash("notice", "User detail success updated");
-        return redirect()->route("users", $id);
-    }
+ //     public function update_user(Request $request, $id)
+ //    {
+ //        $hasil=UserDetail::find($id);
+ //        $input['first_name'] = $request->first_name;
+ //        $input['address'] = $request->address;
+ //        $input['post'] = $request->post;
+ //        $input['no_hp'] = $request->no_hp;
+ //        $input['upload'] = $hasil->upload;
+ //        if ($request->upload !=null) {
+ //            $request->upload->move(public_path('cv'), $input['upload']);
+ //        }
+ //        UserDetail::find($id)->update($input);
+ //        Session::flash("notice", "User detail success updated");
+ //        return redirect()->route("users", $id);
+ //    }
 }

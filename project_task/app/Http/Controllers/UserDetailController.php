@@ -111,5 +111,24 @@ class UserDetailController extends Controller
         //
     }
 
+    public function detail(){
+
+        return view('users.detail');
+    }
+
+    public function user_detail(UserDetailRequest $request){
+
+        $input = $request->except(['upload']);
+        $input['user_id'] = Sentinel::getUser()->id ;
+        $input['upload'] = time().'.'.$request->upload->getClientOriginalExtension();
+        $request->upload->move(public_path('cv'), $input['upload']);   
+        UserDetail::create($input);
+        Session::flash("notice","success created");
+        return redirect()->route('users.index');
+        UserDetail::create($request->all());
+        Session::flash("notice", "Profile success created");
+        return redirect()->route("home");
+    }
+
 
 }
